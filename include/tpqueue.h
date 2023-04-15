@@ -42,7 +42,7 @@ class TPQueue {
         }
         last = ++last % size;
         arr[a] = val;
-      }
+        }
     }
     const T & pop() {
       if (isEmpty())
