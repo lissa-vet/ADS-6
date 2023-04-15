@@ -1,34 +1,34 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 #define M 100
 
 template<typename T, int size>
 class TPQueue {
-  private:
+ private:
     T arr[M];
     unsigned short first, last, count;
-  
-  public:
+
+ public:
     TPQueue() {
       first = 0;
       last = 0;
       count = 0;
     }
-    
     bool isEmpty() const {
-      if (count==0)
-        return true;
-      else return false;
-      
+      if (count == 0)
+      return true;
+      else
+      return false;
     bool isFull() const {
       if (count == M)
-        return true;
-      else return false;
-      
+      return true;
+      else
+      return false;
     void push(const T& val) {
       if (isFull())
-        throw std::string("Queue Full(");
+      throw std::string("Queue Full(");
       else {
         count++;
         unsigned short a = first, b = last;
@@ -41,14 +41,14 @@ class TPQueue {
         last = ++last % size;
         arr[a] = val;
       }
-      
     const T & pop() {
       if (isEmpty())
         throw std::string("Queue Empty((");
       else {
         count--;
         return arr[first++ % size];
-      }    
+      }
+    }
 };
 
 struct SYM {
