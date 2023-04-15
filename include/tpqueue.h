@@ -1,10 +1,54 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#define M 100
 
 template<typename T, int size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
+  private:
+    T arr[M];
+    unsigned short first, last, count;
+  
+  public:
+    TPQueue() {
+      first = 0;
+      last = 0;
+      count = 0;
+    }
+    
+    bool isEmpty() const {
+      if (count==0)
+        return true;
+      else return false;
+      
+    bool isFull() const {
+      if (count == M)
+        return true;
+      else return false;
+      
+    void push(const T& val) {
+      if (isFull())
+        throw std::string("Queue Full(");
+      else {
+        count++;
+        unsigned short a = first, b = last;
+        while (a != last && arr[a].prior >= val.prior)
+          a = ++a % M;
+        while (b != a) {
+          arr[b] = arr[--b % M];
+          b = (--b + M) % M;
+        }
+        last = ++last % size;
+        arr[a] = val;
+      }
+      
+    const T & pop() {
+      if (isEmpty())
+        throw std::string("Queue Empty((");
+      else {
+        count--;
+        return arr[first++ % size];
+      }    
 };
 
 struct SYM {
