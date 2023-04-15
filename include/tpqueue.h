@@ -8,7 +8,7 @@ template<typename T, int size>
 class TPQueue {
  private:
     T arr[M];
-    unsigned short first, last, count;
+    int first, last, count;
 
  public:
     TPQueue() {
@@ -31,7 +31,7 @@ class TPQueue {
       throw std::string("Queue Full(");
       else {
         count++;
-        unsigned short a = first, b = last;
+        int a = first, b = last;
         while (a != last && arr[a].prior >= val.prior)
           a = ++a % M;
         while (b != a) {
@@ -41,6 +41,7 @@ class TPQueue {
         last = ++last % size;
         arr[a] = val;
       }
+    }
     const T & pop() {
       if (isEmpty())
         throw std::string("Queue Empty((");
@@ -49,7 +50,7 @@ class TPQueue {
         return arr[first++ % size];
       }
     }
-};
+}
 
 struct SYM {
   char ch;
