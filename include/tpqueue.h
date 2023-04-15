@@ -21,11 +21,13 @@ class TPQueue {
       return true;
       else
       return false;
+    }
     bool isFull() const {
       if (count == M)
       return true;
       else
       return false;
+    }
     void push(const T& val) {
       if (isFull())
       throw std::string("Queue Full(");
