@@ -46,7 +46,7 @@ class TPQueue {
       if (isEmpty())
         throw std::string("Queue Empty((");
       count--;
-      return arr[first++ % size];
+      return arr[++first % size];
     }
 };
 
