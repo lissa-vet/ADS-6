@@ -32,21 +32,21 @@ class TPQueue {
       if (isFull())
       throw std::string("Queue Full(");
       count++;
-      int с = first, b = last;
-      while (с != last && arr[с].prior >= val.prior)
-        с = ++с % size;
-      while (b != с) {
-        arr[b] = arr[--b % size];
-        b = (--b + size) % size;
+      int a = first, b = last;
+      while (a != last && arr[a].prior >= val.prior)
+        a = (1+a) % size;
+      while (b != a) {
+        arr[b] = arr[(b-1) % size];
+        b = (b-1 + size) % size;
       }
-      last = ++last % size;
-      arr[с] = val;
+      last = (1 + last) % size;
+      arr[a] = val;
     }
     const T & pop() {
       if (isEmpty())
         throw std::string("Queue Empty((");
       count--;
-      return arr[++first % size];
+      return arr[first++ % size];
     }
 };
 
