@@ -23,7 +23,7 @@ class TPQueue {
       return false;
     }
     bool isFull() const {
-      if (count == M)
+      if (count == size)
       return true;
       else
       return false;
@@ -34,10 +34,10 @@ class TPQueue {
       count++;
       int a = first, b = last;
       while (a != last && arr[a].prior >= val.prior)
-        a = ++a % M;
+        a = ++a % size;
       while (b != a) {
-        arr[b] = arr[--b % M];
-        b = (--b + M) % M;
+        arr[b] = arr[--b % size];
+        b = (--b + size) % size;
       }
       last = ++last % size;
       arr[a] = val;
